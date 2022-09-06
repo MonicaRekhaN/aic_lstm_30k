@@ -101,6 +101,7 @@ async def form_post(request: Request,file: UploadFile = File(...)):
     
     npimg = np.fromstring(f,np.uint8)
     img = cv2.imdecode(npimg,cv2.IMREAD_COLOR)
+    img = cv2.cvtColor(img , cv2.COLOR_BGR2RGB)
     img = Image.fromarray(img.astype("uint8"))
     rawBytes = io.BytesIO()
     img.save(rawBytes, "JPEG")
